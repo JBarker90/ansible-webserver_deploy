@@ -1,15 +1,15 @@
 - name: Install Apache, PHP, and MariaDB Packages (Ubuntu)
-    apt: 
-      name: 
-        - apache2 
-        - libapache2-mpm-itk
-        - mariadb-server
-        - php
-        - php-fpm
-        - libapache2-mod-php
-        - php-mysql
-      state: latest
-    when: ansible_distribution == "Ubuntu"
+  apt: 
+    name: 
+      - apache2 
+      - libapache2-mpm-itk
+      - mariadb-server
+      - php
+      - php-fpm
+      - libapache2-mod-php
+      - php-mysql
+    state: latest
+  when: ansible_distribution == "Ubuntu"
 
 - name: Start and Enable the Apache Service
   service: 
