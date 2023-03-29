@@ -3,7 +3,7 @@
 - hosts: all
   become: true
   tasks: 
-    - name: Install Apache, PHP, and MariaDB Packages (Ubuntu)
+    - name: Remove Apache, PHP, and MariaDB Packages (Ubuntu)
       apt: 
         name: 
           - apache2 
@@ -13,5 +13,5 @@
           - php-fpm
           - libapache2-mod-php
           - php-mysql
-      state: absent
+        state: absent
       when: ansible_distribution == "Ubuntu"
