@@ -22,3 +22,13 @@
     repo: ppa:ondrej/php
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
+
+- name: Install Specific PHP versions and Packages
+  apt:
+    name:
+      - php"{{ php_versions }}"
+      - php"{{ php_versions }}"-fpm
+      - libapache2-mod-php"{{ php_versions }}"
+      - php"{{ php_versions }}"-mysql
+    state: present
+  when: ansible_distribution == "Ubuntu"
