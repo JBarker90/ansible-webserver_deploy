@@ -1,3 +1,6 @@
+web_user: "jonathan"
+primary_domain: "jb2fabrications.com"
+secondary_domain: ""
 php_versions:
   - 7.3
   - 7.4
