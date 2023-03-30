@@ -28,7 +28,7 @@
   apt:
     update_cache: yes
     name:
-      - "php{{ php_versions }}"
-      - "php{{ php_versions }}-fpm"
-      - "libapache2-mod-php{{ php_versions }}"
-      - "php{{ php_versions }}-mysql"
+      - "php{{ php_versions[0-3] }}"
+      - "php{{ php_versions[0-3] }}-fpm"
+      - "libapache2-mod-php{{ php_versions[0-3] }}"
+      - "php{{ php_versions[0-3] }}-mysql"
