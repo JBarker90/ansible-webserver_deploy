@@ -6,3 +6,4 @@ php_versions:
   - 8.0
   - 8.1
   - 8.2
+apache_template-file: apache_vhost.conf.j2
