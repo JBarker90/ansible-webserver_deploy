@@ -28,9 +28,9 @@
   apt:
     update_cache: yes
     name:
-      - php{{ php_versions }}
-      - php{{ php_versions }}-fpm
-      - libapache2-mod-php{{ php_versions }}
-      - php{{ php_versions }}-mysql
+      - "php{{ php_versions }}"
+      - "php{{ php_versions }}-fpm"
+      - "libapache2-mod-php{{ php_versions }}"
+      - "php{{ php_versions }}-mysql"
     state: present
   when: ansible_distribution == "Ubuntu"
