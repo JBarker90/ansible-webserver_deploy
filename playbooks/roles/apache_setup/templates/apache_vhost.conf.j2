@@ -1,24 +1,24 @@
 <VirtualHost *:80>
-    #SuexecUserGroup jonathan jonathan
+    #SuexecUserGroup {{ web_user }} {{ web_user }}
     ServerName jb2fabrications.com
     ServerAlias www.jb2fabrications.com 
     ServerAdmin webmaster@localhost
-    DocumentRoot /home/jonathan/jb2fabrications.com/html
+    DocumentRoot /home/{{ web_user }}/jb2fabrications.com/html
 
-    <Directory /home/jonathan/jb2fabrications.com/html>
+    <Directory /home/{{ web_user }}/jb2fabrications.com/html>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
     <FilesMatch ".+\.ph(ar|p|tml)$">
-        SetHandler "proxy:unix:/var/run/php/php8.0-fpm-jonathan.sock|fcgi://localhost/"
+        SetHandler "proxy:unix:/var/run/php/php8.0-fpm-{{ web_user }}.sock|fcgi://localhost/"
     </FilesMatch>
         DirectoryIndex index.php index.html
     </Directory>
 
     <IfModule mpm_itk_module>
-        AssignUserId jonathan jonathan
+        AssignUserId {{ web_user }} {{ web_user }}
     </IfModule>
-    ErrorLog "/home/jonathan/var/jb2fabrications.com/logs/error.log"
-    CustomLog "/home/jonathan/var/jb2fabrications.com/logs/access.log" combined
+    ErrorLog "/home/{{ web_user }}/var/jb2fabrications.com/logs/error.log"
+    CustomLog "/home/{{ web_user }}/var/jb2fabrications.com/logs/access.log" combined
    
 </VirtualHost>
