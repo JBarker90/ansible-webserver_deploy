@@ -1,11 +1,11 @@
 <VirtualHost *:80>
     #SuexecUserGroup {{ web_user }} {{ web_user }}
-    ServerName jb2fabrications.com
-    ServerAlias www.jb2fabrications.com 
+    ServerName {{ primary_domain }}
+    ServerAlias www.{{ primary_domain }} 
     ServerAdmin webmaster@localhost
-    DocumentRoot /home/{{ web_user }}/jb2fabrications.com/html
+    DocumentRoot /home/{{ web_user }}/{{ primary_domain }}/html
 
-    <Directory /home/{{ web_user }}/jb2fabrications.com/html>
+    <Directory /home/{{ web_user }}/{{ primary_domain }}/html>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -18,7 +18,7 @@
     <IfModule mpm_itk_module>
         AssignUserId {{ web_user }} {{ web_user }}
     </IfModule>
-    ErrorLog "/home/{{ web_user }}/var/jb2fabrications.com/logs/error.log"
-    CustomLog "/home/{{ web_user }}/var/jb2fabrications.com/logs/access.log" combined
+    ErrorLog "/home/{{ web_user }}/var/{{ primary_domain }}/logs/error.log"
+    CustomLog "/home/{{ web_user }}/var/{{ primary_domain }}/logs/access.log" combined
    
 </VirtualHost>
