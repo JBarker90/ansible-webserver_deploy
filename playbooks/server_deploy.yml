@@ -15,4 +15,5 @@
   become: true
   roles:
     - base
+    - apache_setup
   
