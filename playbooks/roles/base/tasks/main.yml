@@ -32,3 +32,9 @@
     name: "{{ php_versions[0-2] }}-{{ item }}"
     state: present
   with_items: "{{ php_fpm_packages }}"
+
+- name: Install Apache PHP Packages
+  apt:
+    name: "{{ php_apache_packages }}-{{ item }}"
+    state: present
+  with_items: "{{ php_versions[0-2] }}"

@@ -8,6 +8,6 @@ php_versions:
   - "php8.2"
 php_fpm_packages:
   - "fpm"
-  - "libapache2-mod"
   - "mysql"
+php_apache_packages: "libapache2-mod"
 apache_template-file: apache_vhost.conf.j2
