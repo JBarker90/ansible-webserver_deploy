@@ -1,13 +1,9 @@
-- name: Install Apache, PHP, and MariaDB Packages (Ubuntu)
+- name: Install Apache, and MariaDB Packages (Ubuntu)
   apt: 
     name: 
       - apache2 
       - libapache2-mpm-itk
       - mariadb-server
-      - php
-      - php-fpm
-      - libapache2-mod-php
-      - php-mysql
       - software-properties-common
     state: latest
   when: ansible_distribution == "Ubuntu"
