@@ -11,6 +11,14 @@
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/logs' }
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
 
+- name: Create Symlink for Primary Domain Doc Root
+  file:
+    src: "/home/{{ web_user }}/{{ primary_domain }}/html"
+    dest: "/home/{{ web_user }}/public_html"
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: link
+
 - name: Set up Apache Virtual Host
   template:
     src: "apache_vhost.conf.j2"
