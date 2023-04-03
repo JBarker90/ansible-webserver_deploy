@@ -1,0 +1,12 @@
+- name: Add www-data to User
+  user:
+    name: "{{ web_user }}"
+    groups: www-data
+    append: yes
+    state: present
+
+- name: Create new PHP-FPM pool for User
+  template: 
+    src: "php_fpm_user.conf.j2"
+    dest: "/etc/php/{{ default_php_version }}/fpm/pool.d/{{ web_user }}.conf"
+  notify: Restart_PHP-FPM
