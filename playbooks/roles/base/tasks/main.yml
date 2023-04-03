@@ -20,22 +20,8 @@
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
 
-- name: Install Specific PHP Base Packages
+- name: Install Specific PHP Base and PHP-FPM Packages
   apt:
     update_cache: yes
     name: "{{ php_versions }}"
     state: present
-
-- name: Install PHP-FPM Packages
-  apt:
-    set_fact: vers="{{ php_versions }}"
-    name: "{{ item.vers }}"
-    state: present
-  loop: 
-    - { vers: '{{ php_fpm_packages }}'}
-
-- name: Install Apache PHP Packages
-  apt:
-    name="{{ php_apache_packages }}-{{ item }}"
-    state="present"
-  with_items: "{{ php_versions[0-2] }}"
