@@ -4,6 +4,7 @@
       - apache2 
       - libapache2-mpm-itk
       - mariadb-server
+      - python3-mysqldb
       - software-properties-common
     state: latest
   when: ansible_distribution == "Ubuntu"
