@@ -4,6 +4,7 @@
       - apache2 
       - libapache2-mpm-itk
       - mariadb-server
+      - mytop
       - python3-mysqldb
       - software-properties-common
     state: latest
