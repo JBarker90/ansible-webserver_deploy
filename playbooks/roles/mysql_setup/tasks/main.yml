@@ -4,6 +4,14 @@
     password: "{{ mysql_root_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
 
+- name: Copy .my.cnf file with root credentials
+  template:
+    src: "root-my.cnf.j2"
+    dest: "/root/.my.cnf"
+    owner: root
+    group: root
+    mode: 0600
+
 - name: Removes all anonymous user accounts
   mysql_user: 
     name: ''
