@@ -2,3 +2,8 @@
   service:
     name: "php{{ default_php_version }}-fpm.service"
     state: restarted
+
+- name: Restart-Apache
+  service: 
+    name: apache2
+    state: restarted
