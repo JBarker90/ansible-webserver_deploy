@@ -17,4 +17,5 @@
     - base
     - apache_setup
     - php_setup
+    - mysql_setup
   
