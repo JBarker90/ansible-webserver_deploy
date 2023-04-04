@@ -27,3 +27,4 @@ apache_template-file: apache_vhost.conf.j2
 mysql_root_password: ""
 # Set this variable to `true` and define `mysql_root_password` to update mysql root password
 mysql_root_password_update: false
+mysql_secure_install: false

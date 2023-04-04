@@ -21,6 +21,7 @@
     state: absent
     login_user: root
     login_password: "{{ mysql_root_password }}"
+  when: mysql_secure_install
 
 - name: Removes the test MySQL Database
   mysql_db:
@@ -28,6 +29,7 @@
     state: absent
     login_user: root
     login_password: "{{ mysql_root_password }}"
+  when: mysql_secure_install
 
 - name: Configure MyTop
   template:
