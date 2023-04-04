@@ -18,3 +18,9 @@
     state: absent
     login_user: root
     login_password: "{{ mysql_root_password }}"
+
+- name: Configure MyTop
+  template:
+    src: "mytop_config.j2"
+    dest: /root/.mytop
+    state: present
