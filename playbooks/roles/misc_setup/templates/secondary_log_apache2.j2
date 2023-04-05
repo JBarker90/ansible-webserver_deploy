@@ -1,10 +1,10 @@
-/home/jonathan/var/jb2fabrications.com/logs/*.log {
+/home/{{ web_user }}/var/{{ secondary_domain }}/logs/*.log {
     daily
     missingok
     rotate 14
     compress
     copytruncate
-    create 0640 jonathan jonathan
+    create 0640 {{ web_user }} {{ web_user }}
     sharedscripts
     dateext
     date format %Y-%m-%d.
