@@ -1,0 +1,21 @@
+/home/jonathan/var/jb2fabrications.com/logs/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    copytruncate
+    create 0640 jonathan jonathan
+    sharedscripts
+    dateext
+    date format %Y-%m-%d.
+    prerotate
+        if [ -d /etc/logrotate.d/httpd-prerotate ]; then
+            run-parts /etc/logrotate.d/httpd-prerotate
+        fi
+    endscript
+    postrotate
+        if pgrep -f ^/usr/sbin/apache2 > /dev/null; then
+            invoke-rc.d apache2 reload 2>&1 | logger -t apache2.logrotate
+        fi
+    endscript
+}
