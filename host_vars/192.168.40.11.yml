@@ -1,6 +1,8 @@
 web_user: "jonathan"
 primary_domain: "jb2fabrications.com"
 secondary_domain: ""
+primary_domain_update: true
+secondary_domain_update: false
 default_php_version: "8.0"
 php_versions:
   - "php7.4"
