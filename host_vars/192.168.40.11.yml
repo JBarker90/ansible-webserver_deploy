@@ -1,8 +1,15 @@
+# This will be your target user on the remote host. 
 web_user: "jonathan"
+
+# If a primary domain is being targeted set `primary_domain_update` to true
 primary_domain: "jb2fabrications.com"
+
+# If a secondary domain is being targeted set `secondary_domain_update` to true
 secondary_domain: ""
 primary_domain_update: true
 secondary_domain_update: false
+
+# Set `default_php_version` to the version you would like PHP-CLI to run by default
 default_php_version: "8.0"
 php_versions:
   - "php7.4"
@@ -26,7 +33,9 @@ php_versions:
   - "php8.2-mysql"
   - "php8.2-imagick"
 apache_template-file: apache_vhost.conf.j2
+
+# Set `mysql_root_password_update` to `true` and define `mysql_root_password` to update mysql root password
+# Set `mysql_secure_install` to `true` if you need to initially setup MySQL and do a Secure Install
 mysql_root_password: ""
-# Set this variable to `true` and define `mysql_root_password` to update mysql root password
 mysql_root_password_update: false
 mysql_secure_install: false
