@@ -1,0 +1,15 @@
+/home/{{ web_user }}/var/php-fpm/error.log {
+        daily
+        rotate 14
+        missingok
+        compress
+        copytruncate
+        create 0640 {{ web_user }} {{ web_user }}
+        dateext
+        date format %Y-%m-%d.
+        #postrotate
+        #       if [ -x /usr/lib/php/php8.0-fpm-reopenlogs ]; then
+        #               /usr/lib/php/php8.0-fpm-reopenlogs;
+        #       fi
+        endscript
+}
