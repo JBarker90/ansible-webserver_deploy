@@ -1,0 +1,17 @@
+- name: Configure Log Rotation for Primary User
+  template:
+    src: "primary_log_apache2.j2"
+    dest: "/etc/logrotate.d/{{ web_user }}-primary-apache2"
+    owner: root
+    group: root
+    mode: 0644
+  when: primary_domain_update
+
+- name: Configure Log Rotation for Secondary User
+  template:
+    src: "secondary_log_apache2.j2"
+    dest: "/etc/logrotate.d/{{ web_user }}-{{ secondary_domain }}-apache2"
+    owner: root
+    group: root
+    mode: 0644
+  when: secondary_domain_update
