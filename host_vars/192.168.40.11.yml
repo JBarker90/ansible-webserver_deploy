@@ -1,10 +1,10 @@
 # This will be your target user on the remote host. 
 web_user: "jonathan"
 
-# If a primary domain is being targeted set `primary_domain_update` to true
+# If a primary domain is being targeted set `primary_domain_update` to `true`
 primary_domain: "jb2fabrications.com"
 
-# If a secondary domain is being targeted set `secondary_domain_update` to true
+# If a secondary domain is being targeted set `secondary_domain_update` to `true`
 secondary_domain: ""
 primary_domain_update: true
 secondary_domain_update: false
