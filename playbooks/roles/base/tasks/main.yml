@@ -1,4 +1,4 @@
-- name: Install Apache, and MariaDB Packages (Ubuntu)
+- name: Install Apache and MariaDB Packages (Ubuntu)
   apt: 
     name: 
       - apache2 
