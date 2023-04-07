@@ -11,6 +11,19 @@
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/logs' }
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
 
+- name: Create document root and other File Structures for Secondary site
+  file:
+    path: "{{ item.dest }}"
+    mode: 0755
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    recurse: true
+    state: directory
+  loop: 
+    - { dest: '/home/{{ web_user }}/{{ secondary_domain }}/html' }
+    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/logs' }
+  when: secondary_domain_update
+
 - name: Create Symlink for Primary Domain Doc Root
   file:
     src: "/home/{{ web_user }}/{{ primary_domain }}/html"
