@@ -9,10 +9,9 @@
           - apache2 
           - libapache2-mpm-itk
           - mariadb-server
-          - php
-          - php-fpm
-          - libapache2-mod-php
-          - php-mysql
+          - mytop
+          - python3-mysqldb
+          - software-properties-common
         state: absent
       when: ansible_distribution == "Ubuntu"
 
