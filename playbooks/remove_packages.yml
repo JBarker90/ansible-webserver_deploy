@@ -17,11 +17,7 @@
 
     - name: Remove Specific PHP versions and Packages
       apt:
-        name:
-          - "php{{ php_versions[0-3] }}"
-          - "php{{ php_versions[0-3] }}-fpm"
-          - "libapache2-mod-php{{ php_versions[0-3] }}"
-          - "php{{ php_versions[0-3] }}-mysql"
+        name: "{{ php_versions }}"
         state: absent
 
     - name: Removes the ppa:ondrej/php repo to Ubuntu
