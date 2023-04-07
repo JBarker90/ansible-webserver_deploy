@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+    #SuexecUserGroup {{ web_user }} {{ web_user }}
+    ServerName {{ secondary_domain }}
+    ServerAlias www.{{ secondary_domain }} 
+    ServerAdmin webmaster@localhost
+    DocumentRoot /home/{{ web_user }}/{{ secondary_domain }}/html
+
+    <Directory /home/{{ web_user }}/{{ secondary_domain }}/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    <FilesMatch ".+\.ph(ar|p|tml)$">
+        SetHandler "proxy:unix:/var/run/php/php{{ default_php_version }}-fpm-{{ web_user }}.sock|fcgi://localhost/"
+    </FilesMatch>
+        DirectoryIndex index.php index.html
+    </Directory>
+
+    <IfModule mpm_itk_module>
+        AssignUserId {{ web_user }} {{ web_user }}
+    </IfModule>
+    ErrorLog "/home/{{ web_user }}/var/{{ secondary_domain }}/logs/error.log"
+    CustomLog "/home/{{ web_user }}/var/{{ secondary_domain }}/logs/access.log" combined
+   
+</VirtualHost>
