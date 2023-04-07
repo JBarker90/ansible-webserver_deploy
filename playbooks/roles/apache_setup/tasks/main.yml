@@ -41,3 +41,15 @@
 - name: Enable the New Site
   shell: /usr/sbin/a2ensite "{{ primary_domain }}"
   notify: Restart-Apache
+
+- name: Set up Apache Virtual Host for Secondary Domain
+  template:
+    src: "apache_secondary_vhost.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ secondary_domain }}.conf"
+  notify: Restart-Apache
+  when: secondary_domain_update
+
+- name: Enable Secondary Site
+  shell: /usr/sbin/a2ensite "{{ secondary_domain }}"
+  notify: Restart-Apache
+  when: secondary_domain_update
