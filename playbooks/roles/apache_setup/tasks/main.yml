@@ -9,6 +9,7 @@
     - { dest: '/home/{{ web_user }}/{{ primary_domain }}/html' }
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/logs' }
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
+  when: primary_domain_update
 
 - name: Create document root and other File Structures for Secondary site
   file:
@@ -29,16 +30,19 @@
     owner: "{{ web_user }}"
     group: "{{ web_user }}"
     state: link
+  when: primary_domain_update
 
 - name: Set up Apache Virtual Host
   template:
     src: "apache_vhost.conf.j2"
     dest: "/etc/apache2/sites-available/{{ primary_domain }}.conf"
   notify: Restart-Apache
+  when: primary_domain_update
 
 - name: Enable the New Site
   shell: /usr/sbin/a2ensite "{{ primary_domain }}"
   notify: Restart-Apache
+  when: primary_domain_update
 
 - name: Set up Apache Virtual Host for Secondary Domain
   template:
