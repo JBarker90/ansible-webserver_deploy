@@ -51,3 +51,7 @@
   shell: /usr/sbin/a2ensite "{{ secondary_domain }}"
   notify: Restart-Apache
   when: secondary_domain_update
+
+- name: Enable Mod_Rewrite
+  shell: /usr/sbin/a2enmod rewrite
+  notify: Restart-Apache
