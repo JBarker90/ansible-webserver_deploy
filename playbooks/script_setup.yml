@@ -3,4 +3,10 @@
 - hosts: all
   become: true
   
-  - name: Install WP-CLI
+  - name: Install WP-CLI for user
+    get_url:
+      url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      dest: /usr/local/bin/wp
+      owner: "{{ web_user }}"
+      group: "{{ web_user }}"
+      mode: 0755
