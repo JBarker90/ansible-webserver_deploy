@@ -3,7 +3,7 @@
 - hosts: all
   become: true
   tasks:
-  
+
     - name: Install WP-CLI for user
       get_url:
         url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -13,8 +13,8 @@
         mode: 0755
 
     - name: Download Latest Repository of ProxMox Scripts
-      get_url:
-        url: https://github.com/JBarker90/proxmox-scripts.git
+      git:
+        repo: https://github.com/JBarker90/proxmox-scripts.git
         dest: /tmp/proxmox-scripts
 
     - name: Copy and Sync scripts to /usr/local/sbin
