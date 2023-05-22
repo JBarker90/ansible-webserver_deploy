@@ -9,6 +9,9 @@ secondary_domain: ""
 primary_domain_update: true
 secondary_domain_update: false
 
+# Set `base_install` to `true` if you are running a base install or set to `false` to skip.
+base_install: false
+
 # Set `default_php_version` to the version you would like PHP-CLI to run by default
 default_php_version: "8.0"
 php_versions:
