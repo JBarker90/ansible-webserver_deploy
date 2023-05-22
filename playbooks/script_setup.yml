@@ -2,6 +2,7 @@
 
 - hosts: all
   become: true
+  tasks:
   
     - name: Install WP-CLI for user
       get_url:
