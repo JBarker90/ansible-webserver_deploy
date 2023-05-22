@@ -29,5 +29,4 @@
     - name: Clean up temporary directory
       file:
         path: /tmp/proxmox-scripts
-        remote_src: true
         state: absent
