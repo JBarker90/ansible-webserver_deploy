@@ -21,6 +21,8 @@
       copy:
         src: /tmp/proxmox-scripts
         dest: /usr/local/sbin/
+        owner: "{{ web_user }}"
+        group: "{{ web_user }}"
         mode: 0755
         remote_src: true
     
