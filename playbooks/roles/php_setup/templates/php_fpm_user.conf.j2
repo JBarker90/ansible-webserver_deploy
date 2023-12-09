@@ -12,3 +12,8 @@ pm.min_spare_servers = 1
 pm.max_spare_servers = 3
 php_value[error_log] = /home/{{ web_user }}/var/php-fpm/error.log
 
+access.log = /home/{{ web_user }}/var/php-fpm/access.log
+;  %u: remote user
+;
+; Default: "%R - %u %t \"%m %r\" %s"
+access.format = "%t %{HTTP_X_REQUEST_ID}e %m %{HTTP_HOST}e %f pid:%p took:%ds mem:%{mega}Mmb cpu:%C%% status:%s {%{REMOTE_ADDR}e}"
