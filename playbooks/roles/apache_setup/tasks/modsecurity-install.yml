@@ -1,0 +1,16 @@
+- name: Enable Mod Security module
+  shell: /usr/sbin/a2enmod security2
+  notify: Restart-Apache
+
+- name: Configure Mod Security
+  template:
+    src: "apache_modsecurity.conf.j2"
+    dest: "/etc/modsecurity/modsecurity.conf"
+  notify: Restart-Apache
+
+- name: Download and Uncompress the Latest OWASP Core Rule Set (CRS)
+  unarchive:
+    src: "https://github.com/coreruleset/coreruleset/archive/refs/tags/{{ default_mod_security_version }}.zip"
+    dest: /tmp/
+    remote_src: yes
+    validate_certs: no
