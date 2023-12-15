@@ -5,12 +5,18 @@ web_user: "user"
 primary_domain: "domain.com"
 
 # If a secondary domain is being targeted set `secondary_domain_update` to `true`
-secondary_domain: ""
+secondary_domain: 
+  - "secondarydomain.com"
+  - "secondarydomain2.com"
 primary_domain_update: true
 secondary_domain_update: false
 
 # Set `base_install` to `true` if you are running a base install or set to `false` to skip.
 base_install: false
+
+# If `base_install` is set to `true` it will install Mod Security
+# You can check the latest version at https://github.com/coreruleset/coreruleset/releases/latest
+default_mod_security_version: "v3.3.5" 
 
 # Set `default_php_version` to the version you would like PHP-CLI to run by default
 default_php_version: "8.0"

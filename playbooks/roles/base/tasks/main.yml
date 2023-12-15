@@ -3,6 +3,7 @@
     name: 
       - apache2 
       - libapache2-mpm-itk
+      - libapache2-mod-security2
       - mariadb-server
       - mytop
       - python3-mysqldb
