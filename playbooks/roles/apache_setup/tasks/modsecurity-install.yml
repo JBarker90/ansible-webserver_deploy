@@ -1,6 +1,5 @@
 - name: Enable Mod Security module
   shell: /usr/sbin/a2enmod security2
-  notify: Restart-Apache
 
 - name: Configure Mod Security
   template:
