@@ -8,6 +8,10 @@
       - mytop
       - python3-mysqldb
       - software-properties-common
+      - apt-transport-https
+      - lsb-release
+      - ca-certificates
+      - curl
     state: latest
   when: (ansible_distribution == "Ubuntu") and (base_install)
 
