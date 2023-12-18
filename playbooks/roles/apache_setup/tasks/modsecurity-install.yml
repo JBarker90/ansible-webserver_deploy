@@ -45,7 +45,29 @@
 
 - name: Download and Uncompress the Latest OWASP Core Rule Set (CRS)
   unarchive:
-    src: "https://github.com/coreruleset/coreruleset/archive/refs/tags/{{ default_mod_security_version }}.zip"
+    src: "https://github.com/coreruleset/coreruleset/archive/refs/tags/v{{ default_mod_security_version }}.zip"
     dest: /tmp/
     remote_src: yes
     validate_certs: no
+
+- name: Move the CRS file to /etc/modsecurity
+  copy:
+    src: "/tmp/coreruleset-{{ default_mod_security_version }}/crs-setup.conf.example"
+    dest: "/etc/modsecurity/crs-setup.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Move the Rules directory to /etc/modsecurity
+  copy:
+    src: "/tmp/coreruleset-{{ default_mod_security_version }}/rules"
+    dest: "/etc/modsecurity/rules"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Add lines to load ModSecurity rules
+  template:
+    src: "security2.conf.j2"
+    dest: "/etc/apache2/mods-enabled/security2.conf"
+  notify: Restart-Apache
