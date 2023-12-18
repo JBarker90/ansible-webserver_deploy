@@ -1,3 +1,39 @@
+- name: Add required Dependencies for libapache2-mod-security2 Backport
+  apt:
+    name:
+      - apt-transport-https
+      - lsb-release
+      - ca-certificates
+      - curl
+    state: present
+  
+- name: Add Digitalwave Backport Apt key
+  apt_key:
+    url: https://modsecurity.digitalwave.hu/archive.key
+    state: present
+
+- name: Add Digital Wave Backport to the repository
+  apt_repository:
+    repo:
+      - "deb http://modsecurity.digitalwave.hu/ubuntu/ jammy main"
+      - "deb http://modsecurity.digitalwave.hu/debian/ jammy-backports main"
+    state: present
+  when: ansible_os_family == "Debian" and ansible_distribution_version == "22.04"
+
+- name: Add Backport Policy
+  template:
+    src: "99modsecurity.j2"
+    dest: "/etc/apt/preferences.d/99modsecurity"
+    state: present
+    update_cache: true
+
+# Not sure if the state being present will not reinstall backport properly
+- name: Reinstall Backported libapache2-mod-security2
+  apt:
+    name:
+      - libapache2-mod-security2
+    state: present
+
 - name: Enable Mod Security module
   shell: /usr/sbin/a2enmod security2
 
