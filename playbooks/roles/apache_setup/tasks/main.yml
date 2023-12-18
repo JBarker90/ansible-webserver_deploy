@@ -61,4 +61,4 @@
   notify: Restart-Apache
 
 - include_tasks: modsecurity-install.yml
-  when: base_install == 'true'
+  when: base_install
