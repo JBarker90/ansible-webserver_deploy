@@ -8,6 +8,7 @@
   loop:
     - { dest: '/home/{{ web_user }}/{{ primary_domain }}/html' }
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/logs' }
+    - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/backups' }
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
   when: primary_domain_update
 
@@ -21,6 +22,7 @@
   loop: 
     - { dest: '/home/{{ web_user }}/{{ secondary_domain }}/html' }
     - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/logs' }
+    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/backups' }
   when: secondary_domain_update
 
 - name: Create Symlink for Primary Domain Doc Root
@@ -31,6 +33,24 @@
     group: "{{ web_user }}"
     state: link
   when: primary_domain_update
+
+- name: Create Symlink for Backups for Primary Domain
+  file:
+    src: "/home/{{ web_user }}/var/{{ primary_domain }}/backups"
+    dest: "/home/{{ web_user }}/{{ primary_domain }}/backups"
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: link
+  when: primary_domain_update
+
+- name: Create Symlink for Backups for Secondary Domains
+  file:
+    src: "/home/{{ web_user }}/var/{{ secondary_domain }}/backups"
+    dest: "/home/{{ web_user }}/{{ secondary_domain }}/backups"
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: link
+  when: secondary_domain_update
 
 - name: Set up Apache Virtual Host
   template:
