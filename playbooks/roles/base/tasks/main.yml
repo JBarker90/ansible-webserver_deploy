@@ -5,10 +5,9 @@
       - libapache2-mpm-itk
       - libapache2-mod-security2
       - mariadb-server
-      - mytop
       - python3-mysqldb
       - software-properties-common
-    state: present
+    state: latest
   when: (ansible_distribution == "Ubuntu") and (base_install)
 
 - name: Start and Enable the Apache Service
