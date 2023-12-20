@@ -7,7 +7,7 @@
       - mariadb-server
       - python3-mysqldb
       - software-properties-common
-    state: latest
+    state: present
   when: (ansible_distribution == "Ubuntu") and (base_install)
 
 - name: Start and Enable the Apache Service
