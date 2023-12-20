@@ -5,6 +5,7 @@
       - lsb-release
       - ca-certificates
       - curl
+      - unzip
     state: present
   
 - name: Add Digitalwave Backport Apt key
