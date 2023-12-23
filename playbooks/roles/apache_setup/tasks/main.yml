@@ -100,7 +100,6 @@
   template:
     src: "apache_vhost.conf.j2"
     dest: "/etc/apache2/sites-available/{{ primary_domain }}.conf"
-  notify: Restart-Apache
   when: primary_domain_update
 
 - name: Enable the New Site
@@ -111,12 +110,19 @@
 - name: Set up Apache Virtual Host for Secondary Domain
   template:
     src: "apache_secondary_vhost.conf.j2"
-    dest: "/etc/apache2/sites-available/{{ secondary_domain }}.conf"
-  notify: Restart-Apache
+    dest: "/etc/apache2/sites-available/{{ secondary_domains.name }}.conf"
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
   when: secondary_domain_update
 
 - name: Enable Secondary Site
-  shell: /usr/sbin/a2ensite "{{ secondary_domain }}"
+  shell: /usr/sbin/a2ensite "{{ secondary_domains.name }}"
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
   notify: Restart-Apache
   when: secondary_domain_update
 
