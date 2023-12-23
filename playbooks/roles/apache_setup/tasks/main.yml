@@ -13,18 +13,56 @@
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
   when: primary_domain_update
 
-- name: Create document root and other File Structures for Secondary site
+- name: Create document root for Secondary sites
   file:
-    path: "{{ item.dest }}"
+    path: '/home/{{ web_user }}/{{ secondary_domains.name }}/html'
     mode: 0755
     owner: "{{ web_user }}"
     group: "{{ web_user }}"
     state: directory
-  loop: 
-    - { dest: '/home/{{ web_user }}/{{ secondary_domain }}/html' }
-    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/logs' }
-    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/backups' }
-    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/apache' }
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
+  when: secondary_domain_update
+
+- name: Create Log directory for Secondary sites
+  file:
+    path: '/home/{{ web_user }}/var/{{ secondary_domains.name }}/logs'
+    mode: 0755
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: directory
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
+  when: secondary_domain_update
+
+- name: Create Backups directory for Secondary sites
+  file:
+    path: '/home/{{ web_user }}/var/{{ secondary_domains.name }}/backups'
+    mode: 0755
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: directory
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
+  when: secondary_domain_update
+
+- name: Create Apache Includes directory for Secondary sites
+  file:
+    path: '/home/{{ web_user }}/var/{{ secondary_domains.name }}/apache'
+    mode: 0755
+    owner: "{{ web_user }}"
+    group: "{{ web_user }}"
+    state: directory
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
   when: secondary_domain_update
 
 - name: Create Symlink for Primary Domain Doc Root
@@ -47,11 +85,15 @@
 
 - name: Create Symlink for Backups for Secondary Domains
   file:
-    src: "/home/{{ web_user }}/var/{{ secondary_domain }}/backups"
-    dest: "/home/{{ web_user }}/{{ secondary_domain }}/backups"
+    src: "/home/{{ web_user }}/var/{{ secondary_domains.name }}/backups"
+    dest: "/home/{{ web_user }}/{{ secondary_domains.name }}/backups"
     owner: "{{ web_user }}"
     group: "{{ web_user }}"
     state: link
+  loop: "{{ secondary_domain.sites }}"
+  loop_control:
+    loop_var: secondary_domains
+    label: '{{ secondary_domains.name }}'
   when: secondary_domain_update
 
 - name: Set up Apache Virtual Host
