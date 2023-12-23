@@ -5,9 +5,10 @@ web_user: "user"
 primary_domain: "domain.com"
 
 # If a secondary domain is being targeted set `secondary_domain_update` to `true`
-secondary_domain: 
-  - "secondarydomain.com"
-  - "secondarydomain2.com"
+secondary_domain:
+  sites:
+    - name: secondarydomain.com
+    - name: secondarydomain2.com
 primary_domain_update: true
 secondary_domain_update: false
 
@@ -21,17 +22,6 @@ default_mod_security_version: "v3.3.5"
 # Set `default_php_version` to the version you would like PHP-CLI to run by default
 default_php_version: "8.0"
 php_versions:
-  - "php7.4"
-  - "php7.4-fpm"
-  - "libapache2-mod-php7.4"
-  - "php7.4-mysql"
-  - "php7.4-imagick"
-  - "php7.4-curl"
-  - "php7.4-dom"
-  - "php7.4-xml"
-  - "php7.4-zip"
-  - "php7.4-mbstring"
-  - "php7.4-intl"
   - "php8.0"
   - "php8.0-fpm"
   - "libapache2-mod-php8.0"
