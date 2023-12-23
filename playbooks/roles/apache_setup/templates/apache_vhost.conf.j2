@@ -20,5 +20,11 @@
     </IfModule>
     ErrorLog "/home/{{ web_user }}/var/{{ primary_domain }}/logs/error.log"
     CustomLog "/home/{{ web_user }}/var/{{ primary_domain }}/logs/access.log" combined
-   
+
+    <IfVersion >= 2.4>
+        IncludeOptional /home/{{ web_user }}/var/{{ primary_domain }}/apache/*.conf
+    </IfVersion>
+    <IfVersion < 2.4>
+        Include /home/{{ web_user }}/var/{{ primary_domain }}/apache/*.conf
+    </IfVersion>
 </VirtualHost>

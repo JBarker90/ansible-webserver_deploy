@@ -9,6 +9,7 @@
     - { dest: '/home/{{ web_user }}/{{ primary_domain }}/html' }
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/logs' }
     - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/backups' }
+    - { dest: '/home/{{ web_user }}/var/{{ primary_domain }}/apache' }
     - { dest: '/home/{{ web_user }}/var/php-fpm' }
   when: primary_domain_update
 
@@ -23,6 +24,7 @@
     - { dest: '/home/{{ web_user }}/{{ secondary_domain }}/html' }
     - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/logs' }
     - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/backups' }
+    - { dest: '/home/{{ web_user }}/var/{{ secondary_domain }}/apache' }
   when: secondary_domain_update
 
 - name: Create Symlink for Primary Domain Doc Root
