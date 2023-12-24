@@ -8,9 +8,9 @@
 - name: Create new PHP-FPM pool for User
   template: 
     src: "php_fpm_user.conf.j2"
-    dest: "/etc/php/{{ default_php_version }}/fpm/pool.d/{{ web_user }}.conf"
+    dest: "/etc/php/{{ version }}/fpm/pool.d/{{ web_user }}.conf"
   notify: Restart_PHP-FPM
 
 - name: Enable PHP Version in Apache
-  shell: /usr/sbin/a2enmod "php{{ default_php_version }}"
+  shell: /usr/sbin/a2enmod "php{{ version }}"
   notify: Restart-Apache
