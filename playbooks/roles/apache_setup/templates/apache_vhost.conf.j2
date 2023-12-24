@@ -10,7 +10,7 @@
         AllowOverride All
         Require all granted
     <FilesMatch ".+\.ph(ar|p|tml)$">
-        SetHandler "proxy:unix:/var/run/php/php{{ default_php_version }}-fpm-{{ web_user }}.sock|fcgi://localhost/"
+        SetHandler "proxy:unix:/var/run/php/php{{ version }}-fpm-{{ web_user }}.sock|fcgi://localhost/"
     </FilesMatch>
         DirectoryIndex index.php index.html
     </Directory>

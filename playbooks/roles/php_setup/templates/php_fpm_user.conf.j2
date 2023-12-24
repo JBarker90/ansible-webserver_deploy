@@ -1,5 +1,5 @@
 [{{ web_user }}]
-listen = /run/php/php{{ default_php_version }}-fpm-{{ web_user }}.sock
+listen = /run/php/php{{ version }}-fpm-{{ web_user }}.sock
 listen.owner = {{ web_user }}
 listen.group = www-data
 user = {{ web_user }}
